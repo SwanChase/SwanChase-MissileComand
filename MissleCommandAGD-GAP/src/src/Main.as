@@ -22,19 +22,19 @@ package src
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			var myTimer:Timer = new Timer(2000,10);
+			var myTimer:Timer = new Timer(1,1000);
 			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
 			function timerListener (e:TimerEvent):void
 			{
-				newEnemyMissile();
+				newEnemyMissle();
 			}
 			myTimer.start();
 		}
-		private function newEnemyMissile():void
+		private function newEnemyMissle():void
 		{
-			var newMissile: Missle1 = new Missle1();
-			addChild(newMissile);
-			newMissile.x = Math.random() * stage.stageWidth;
+			var newMissle: Missle1 = new Missle1();
+			addChild(newMissle);
+			newMissle.x = Math.random() * stage.stageWidth;
 		}
 	}
 	

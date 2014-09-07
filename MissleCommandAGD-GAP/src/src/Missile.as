@@ -9,18 +9,18 @@ package src
 	public class Missile extends Sprite
 	{
 		
-		private var asset:missile;
+		private var asset:Missle;
 		
 		public function Missile() 
 		{
-			asset = new missile();
+			asset = new Missle();
 			addChild (asset);
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
 		
 		private function update(e:Event):void 
 		{
-			y = y + 5;
+			y = y + 10;
 		}
 		
 	}
