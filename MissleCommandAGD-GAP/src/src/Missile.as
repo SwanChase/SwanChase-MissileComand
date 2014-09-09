@@ -9,11 +9,11 @@ package src
 	public class Missile extends Sprite
 	{
 		
-		private var asset:Missle;
+		private var asset:Missle1;
 		
 		public function Missile() 
 		{
-			asset = new Missle();
+			asset = new Missle1();
 			addChild (asset);
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}

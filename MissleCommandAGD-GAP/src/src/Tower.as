@@ -8,8 +8,8 @@ package src
 	 */
 	public class Tower extends Sprite
 	{
-		private var tower : Tower1 = new Tower1;
-		private var barrel : Barrel = new Barrel;
+		private var tower : Tower1;// = new Tower1;
+		private var barrel : Barrel;// = new Barrel;
 		
 		public function Tower():void
 		{
@@ -21,7 +21,9 @@ package src
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-		
+			Tower1 = new Tower1;
+			Barrel = new Barrel;
+			
 			barrel.x = 20;
 			tower.x = 20;
 			

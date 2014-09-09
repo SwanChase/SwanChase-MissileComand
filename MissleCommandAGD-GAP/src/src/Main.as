@@ -12,6 +12,7 @@ package src
 	public class Main extends Sprite 
 	{
 		
+		
 		public function Main():void 
 		{
 			if (stage) init();
@@ -22,17 +23,18 @@ package src
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			var myTimer:Timer = new Timer(1,1000);
+			var myTimer:Timer = new Timer(1,500);
 			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
 			function timerListener (e:TimerEvent):void
 			{
 				newEnemyMissle();
 			}
 			myTimer.start();
+			
 		}
 		private function newEnemyMissle():void
 		{
-			var newMissle: Missle1 = new Missle1();
+			var newMissle: Missile = new Missile();
 			addChild(newMissle);
 			newMissle.x = Math.random() * stage.stageWidth;
 		}
