@@ -30,6 +30,13 @@ package src
 				newEnemyMissle();
 			}
 			myTimer.start();
+			var tower : Tower = new Tower();
+			tower.scaleX = 2;
+			tower.scaleY = 2;
+			tower.x = 20;
+			tower.y = 350;
+			
+			addChild(tower);
 			
 		}
 		private function newEnemyMissle():void
