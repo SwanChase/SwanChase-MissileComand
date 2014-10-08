@@ -31,11 +31,11 @@ package src
 			tower = new Tower1();
 			barrel = new Barrel();
 			
-			barrel.x = 20;
-			tower.x = 20;
+			barrel.x = 00;
+			tower.x = 00;
 			
-			barrel.y = 100;
-			tower.y = 100;
+			barrel.y = 00;
+			tower.y = 00;
 			
 			addChild(barrel);
 			addChild(tower);
@@ -51,11 +51,16 @@ package src
 			var rotationInRadians : Number = Math.atan2(diffY, diffX);
 			
 			barrel.rotation	= rotationInRadians * (180 / Math.PI);
+			
+			//var dir = Math.atan2(this.y - e.localX, this. x - e.localY);
+			//this.rotation = dir * 180/Math.PI + 180;
+			
+			
 		}
 		
 		private function fire(e:MouseEvent):void 
 		{
-			barrel.play();
+			//barrel.play();
 			dispatchEvent(new Event(SHOOT));
 		}
 		
