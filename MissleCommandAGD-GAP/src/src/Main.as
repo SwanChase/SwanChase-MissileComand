@@ -12,13 +12,16 @@ package src
 	public class Main extends Sprite 
 	{
 		private var tower : Tower;
-		
 		private var ground : Ground;
 		
 		private var playerMissiles : Array;
 		private var enemyMissiles : Array;
+		private var groundObjects : Array;
+		private var towers : Array;
 		
 		private var missileFactory: MissileFactory;
+		private var groundFactory: GroundFactory;
+		private var towerFactory: TowerFactory;
 		
 		public function Main():void 
 		{
@@ -28,26 +31,42 @@ package src
 			addEventListener(Event.ENTER_FRAME, update);
 		}
 		
+		private function timerListener2 (e:TimerEvent):void
+		{
+			var newObject:GroundPerson = groundFactory.makeObject(GroundFactory.BASIC_PERSON, 0, 533, this);
+			
+		}
+		
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			// entry point
-			var myTimer:Timer = new Timer(1000,5);
-			myTimer.addEventListener(TimerEvent.TIMER, timerListener);
+			
+			var makeMissileTimer:Timer = new Timer(1000, 5);
+			var makeGroundTimer:Timer = new Timer(3000, 30);
+			
+			makeMissileTimer.addEventListener(TimerEvent.TIMER, timerListener);
+			makeGroundTimer.addEventListener(TimerEvent.TIMER, timerListener2);
+			
 			function timerListener (e:TimerEvent):void
 			{
 				newEnemyMissle();
 			}
-			myTimer.start();
+			makeMissileTimer.start();
+			makeGroundTimer.start();
 			
+			towers = [];
+			groundObjects = [];
 			playerMissiles = [];
 			enemyMissiles = [];
 			
-			var ground :Ground = new Ground();
 			missileFactory = new MissileFactory();
+			groundFactory = new GroundFactory();
+			towerFactory = new TowerFactory();
 			
-			ground.x = stage.stageWidth / 2;
-			ground.y = 600;
+			ground = new Ground();
+			ground.scaleX = 2;
+			ground.x = 0;
+			ground.y = 550;
 			addChild(ground);
 			
 			tower = new Tower();
@@ -71,18 +90,24 @@ package src
 				playerMissiles[i].update();
 			}
 			
-			for (var i : int = j - 1; i >= 0 ; i--)
+			for (var k : int = j - 1; k >= 0 ; k--)
 			{
-				enemyMissiles[i].update();
+				enemyMissiles[k].update();
 			}
 		}
 		
 		private function fire(e:Event):void 
 		{
-			var newMissile = missileFactory.makeMissile(MissileFactory.BASIC_MISSILE, tower.turretRotation,tower.x,tower.y, this);
-			
+			var newMissile = missileFactory.makeMissile(MissileFactory.BASIC_MISSILE, tower.turretRotation,tower.x,tower.y, this, mouseY);
+			trace(mouseY);
 			playerMissiles.push(newMissile);
 		}
+		/*private function spawn(e:Event):void 
+		{
+			var newGroundObject = newGroundObject.makeObject(GroundFactory.BASIC_PERSON,tower.x,tower.y, this);
+			
+			groundObjects.push(newGroundObject);
+		}*/
 		
 		private function newEnemyMissle():void
 		{
