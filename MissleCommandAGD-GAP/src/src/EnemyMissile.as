@@ -15,7 +15,7 @@ package src
 		{
 			asset = new Missle1();
 			addChild (asset);
-			addEventListener(Event.ENTER_FRAME, update);
+			//this.addEventListener(Event.ENTER_FRAME, update);
 		}
 		
 		public function update():void 

@@ -9,6 +9,7 @@ package src
 	{
 		
 		protected var asset2 : Missle2;
+		protected var explosion : Explosion;
 		
 		protected var stepX	: Number;
 		protected var stepY	: Number;
@@ -40,13 +41,24 @@ package src
 		{
 			this.x	+=	stepX;
 			this.y	+=	stepY;
+			
 			if (y <= destination)
 			{
+				explosion = new Explosion();
+				addChild(explosion);
 				
+				//var playerMissile
+				//playerMissiles.splice(playerMissiles.indexOf(playerMissile), 1);
+				//removeChild(playerMissile);
+				
+				explosion.gotoAndPlay(0);
+				explosion.gotoAndStop(30);
+				//removeChild(asset2);
 			}
-			
+			if (y < 0)
+			{
+				//removeChild();
+			}
 		}
-		
 	}
-
 }

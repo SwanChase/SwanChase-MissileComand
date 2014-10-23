@@ -12,7 +12,7 @@ package src
 	 */
 	public class GroundPerson extends Sprite
 	{
-		private var ass : Barrel;
+		private var person : Person;
 		
 		private var _direction : int;
 		private var _speed : int = 1;
@@ -21,10 +21,11 @@ package src
 		public function GroundPerson() 
 		{
 			
-			ass = new Barrel();
+			person = new Person();
+			person.scaleX = 0.5;
+			person.scaleY = 0.5;
 			
-			ass.rotationZ = 90;
-			addChild(ass);
+			addChild(person);
 			
 			_stage = stage;
 			
@@ -33,13 +34,7 @@ package src
 			addEventListener(Event.ENTER_FRAME, move);
 		}
 		
-		/*private function init(e:Event):void
-		{
-			
-			//removeEventListener(Event.ADDED_TO_STAGE, init);
-			
-			
-		}*/
+		
 		
 		private function move(e:Event):void 
 		{

@@ -11,6 +11,9 @@ package src
 	 */
 	public class Main extends Sprite 
 	{
+		private var startMenu :StartMenu;
+		public static const START : String = "gameStart";
+		
 		private var tower : Tower;
 		private var ground : Ground;
 		
@@ -31,23 +34,23 @@ package src
 			addEventListener(Event.ENTER_FRAME, update);
 		}
 		
-		private function timerListener2 (e:TimerEvent):void
+		private function groundTimerListener (e:TimerEvent):void
 		{
-			var newObject:GroundPerson = groundFactory.makeObject(GroundFactory.BASIC_PERSON, 0, 533, this);
-			
+			var newObject:GroundPerson = groundFactory.makeObject(GroundFactory.BASIC_PERSON, 0, 524, this);
 		}
+		
 		
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			var makeMissileTimer:Timer = new Timer(1000, 5);
+			var makeMissileTimer:Timer = new Timer(1000, 90);
 			var makeGroundTimer:Timer = new Timer(3000, 30);
 			
-			makeMissileTimer.addEventListener(TimerEvent.TIMER, timerListener);
-			makeGroundTimer.addEventListener(TimerEvent.TIMER, timerListener2);
+			makeMissileTimer.addEventListener(TimerEvent.TIMER, missileTimerListener);
+			makeGroundTimer.addEventListener(TimerEvent.TIMER, groundTimerListener);
 			
-			function timerListener (e:TimerEvent):void
+			function missileTimerListener (e:TimerEvent):void
 			{
 				newEnemyMissle();
 			}
@@ -67,7 +70,6 @@ package src
 			ground.scaleX = 2;
 			ground.x = 0;
 			ground.y = 550;
-			addChild(ground);
 			
 			tower = new Tower();
 			tower.scaleX = 2;
@@ -76,8 +78,11 @@ package src
 			tower.y = 500;
 			
 			addChild(tower);
+			addChild(ground);
+			
 			tower.addEventListener(Tower.SHOOT, fire);
 		}
+		
 		
 		private function update(e:Event):void 
 		{
@@ -102,12 +107,6 @@ package src
 			trace(mouseY);
 			playerMissiles.push(newMissile);
 		}
-		/*private function spawn(e:Event):void 
-		{
-			var newGroundObject = newGroundObject.makeObject(GroundFactory.BASIC_PERSON,tower.x,tower.y, this);
-			
-			groundObjects.push(newGroundObject);
-		}*/
 		
 		private function newEnemyMissle():void
 		{
